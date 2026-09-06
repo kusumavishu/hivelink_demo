@@ -1,3 +1,13 @@
+info:
+  app:
+    name: ${APP_NAME}
+    version: ${APP_VERSION}
+    description: ${APP_DESCRIPTION}
+    environment: ${APP_ENVIRONMENT}
+    author: ${APP_AUTHOR}
+
+  developer:
+    name: ${APP_AUTHOR}
 
 spring:
   config:
@@ -7,12 +17,9 @@ spring:
     name: hivelink_demo
 
   datasource:
-#    url: ${DB_URL}
-#    username: ${DB_USERNAME}
-#    password: ${DB_PASSWORD}
-    url: jdbc:postgresql://aws-0-ap-south-1.pooler.supabase.com:5432/postgres?sslmode=require
-    username: postgres.srmvxgtuytimdgksxnmn
-    password: Manikeerthana
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
     hikari:
       validation-timeout: 5000
@@ -33,3 +40,47 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  security:
+    user:
+      name: ${ADMIN_USERNAME}
+      password: ${ADMIN_PASSWORD}
+
+server:
+  port: 8080
+  servlet:
+    context-path: /v1
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: on_param   # never | always | on_param
+    include-exception: false
+
+jwt:
+  secret: JWT_KEY_FOR_springboot_with_supabase_ON_04_09_2026
+  access-token-expiration: 18000 #  900000
+  refresh-token-expiration: 604800000
+
+supabase:
+  url: ${SUPABASE_URL}
+  service-key: ${SUPABASE_SECRET_KEY}
+
+  storage:
+    buckets:
+      images: images
+      documents: documents
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    layout: BaseLayout
+    path: /api/docs
+    filter: true
+    tags-sorter: alpha
+    disable-swagger-default-url: true
+    stay-at-custom-path: true
+    operations-sorter: method
+    try-it-out-enabled: true
+    display-request-duration: true
+    persist-authorization: true
