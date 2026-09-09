@@ -46,6 +46,11 @@ spring:
       name: ${ADMIN_USERNAME}
       password: ${ADMIN_PASSWORD}
 
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 20MB
+
 server:
   port: 8080
   servlet:
@@ -84,3 +89,8 @@ springdoc:
     try-it-out-enabled: true
     display-request-duration: true
     persist-authorization: true
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
