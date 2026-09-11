@@ -18,5 +18,11 @@ public class ApiException extends RuntimeException{
         this.data = data;
     }
 
+    public HttpStatus getStatus() {
+        return status;
+    }
 
+    public Object getData() {
+        return data;
+    }
 }
